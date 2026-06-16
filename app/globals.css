@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+audio {
+  color-scheme: dark;
+}
+
+audio::-webkit-media-controls-panel {
+  background-color: #1f2937;
+}
