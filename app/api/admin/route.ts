@@ -25,9 +25,9 @@ export async function GET(req: NextRequest) {
       supabaseAdmin.from('usage_logs').select('feature, status, created_at').gte('created_at', new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString())
     ])
 
-    const users = usersRes.data || []
-    const orders = ordersRes.data || []
-    const logs = logsRes.data || []
+    const users = (usersRes.data || []) as Array<{ status: string; created_at: string; role: string }>
+    const orders = (ordersRes.data || []) as Array<{ status: string; amount: number; created_at: string }>
+    const logs = (logsRes.data || []) as Array<{ feature: string; status: string; created_at: string }>
 
     const stats = {
       totalMembers: users.filter(u => u.role === 'member').length,
