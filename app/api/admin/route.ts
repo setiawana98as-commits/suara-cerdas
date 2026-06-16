@@ -62,6 +62,12 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ members: data || [], total: count || 0 })
   }
 
+  if (type === 'settings') {
+    const { data } = await supabaseAdmin.from('settings').select('key, value')
+    const settings = Object.fromEntries((data || []).map(s => [s.key, s.value]))
+    return NextResponse.json({ settings })
+  }
+
   if (type === 'orders') {
     const status = searchParams.get('status') || 'paid'
     const { data } = await supabaseAdmin
@@ -168,3 +174,4 @@ export async function POST(req: NextRequest) {
 
   return NextResponse.json({ error: 'Action tidak dikenali' }, { status: 400 })
 }
+// Handler sudah ada di GET, tambahkan type=settings di bawah type=orders
