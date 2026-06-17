@@ -332,6 +332,8 @@ export default function AdminPage() {
                           <div className="flex gap-2">
                             {m.status==='active' ? (
                               <button onClick={() => action('suspend_user', m.id)} className="text-xs text-red-400 hover:text-red-300 flex items-center gap-1"><Ban size={12}/> Suspend</button>
+                            ) : m.status==='pending' ? (
+                              <button onClick={() => action('confirm_payment', m.id)} className="text-xs text-green-400 hover:text-green-300 flex items-center gap-1"><UserCheck size={12}/> Aktifkan</button>
                             ) : m.status==='suspended' ? (
                               <button onClick={() => action('activate_user', m.id)} className="text-xs text-green-400 hover:text-green-300 flex items-center gap-1"><UserCheck size={12}/> Aktifkan</button>
                             ) : null}
